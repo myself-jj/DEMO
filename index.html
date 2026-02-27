@@ -1,74 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo Website by JJ</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <title>Jihad Junaed · tutor & creator</title>
   <style>
-    body {
+    /* ----- RESET & MODERN VARIABLES (mobile-first) ----- */
+    * {
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-soft: #3b82f6;
+      --secondary: #10b981;
+      --accent: #f59e0b;
+      --bg-dark: #0f172a;
+      --bg-light: #f8fafc;
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.3);
+      --glass-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
+      --card-bg: rgba(255, 255, 255, 0.7);
+      --text-primary: #0b1e33;
+      --text-muted: #334155;
+      --glow: 0 0 12px rgba(37, 99, 235, 0.4);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(145deg, #e2e8f0 0%, #f1f5f9 100%);
+      min-height: 100vh;
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 0.5rem;
+    }
+
+    /* background blobs (fixed, subtle) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 1rem auto;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* ----- GLASS CARD (base) – refined for mobile ----- */
+    .glass-card, header, section.card, .intro, footer {
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: var(--glass-shadow), 0 8px 20px -8px rgba(0,20,40,0.15);
+      border-radius: 2rem;
+      transition: var(--transition);
+    }
+
+    /* ----- HEADER (stack friendly) ----- */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 1.2rem;
+      background: rgba(37, 99, 235, 0.6);
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 10px 30px -10px rgba(0,80,200,0.4);
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(15px);
+      color: white;
+      text-align: center;
+    }
+
+    header h1 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #fff, #f0f9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+    }
+
+    /* ----- INTRO (column on mobile, row on larger) ----- */
+    .intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+      padding: 2rem 1.5rem;
+      margin: 1.5rem 0;
+      background: rgba(255,255,255,0.5);
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+    }
+
+    @media (min-width: 600px) {
+      .intro {
+        flex-direction: row;
+        text-align: left;
+        padding: 2.5rem;
+      }
+    }
+
+    .intro::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      z-index: -1;
+      background: linear-gradient(60deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+      background-size: 300% 300%;
+      border-radius: 2.2rem;
+      animation: gradientShift 8s ease infinite;
+      opacity: 0.5;
+    }
+
+    .intro img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      border: 4px solid white;
+      box-shadow: 0 20px 30px -8px rgba(0,0,0,0.25);
+      transition: transform 0.4s ease, border-radius 0.4s;
+    }
+
+    .intro img:hover {
+      transform: scale(1.05) rotate(2deg);
+      border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+    }
+
+    .intro h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(130deg, #1e3c72, #2a5298);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .intro p {
+      max-width: 500px;
+    }
+
+    /* ----- CARDS (mobile padding refined) ----- */
+    section.card {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 1.8rem 1.5rem;
+      border-radius: 2.2rem;
+      margin: 1.8rem 0;
+    }
+
+    .card h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      display: inline-block;
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      border-left: 6px solid var(--primary);
+      padding-left: 1rem;
+      word-break: break-word;
+    }
+
+    /* grid for education – mobile first 1 col */
+    .grid.two {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+
+    @media (min-width: 640px) {
+      .grid.two {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li {
+      margin-bottom: 0.9rem;
+      padding-left: 1.8rem;
+      position: relative;
+      word-break: break-word;
+    }
+    ul li::before {
+      content: "✨";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    /* tutor badge & chips */
+    .tutor-badge {
+      background: linear-gradient(115deg, rgba(16,185,129,0.15), rgba(245,158,11,0.15));
+      border-radius: 2rem;
+      padding: 1.2rem 1.2rem;
+      margin: 1.5rem 0 0.5rem;
+      border: 1px dashed var(--secondary);
+    }
+
+    .chip {
+      display: inline-block;
+      background: rgba(37,99,235,0.15);
+      backdrop-filter: blur(4px);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin: 0.3rem 0.4rem 0.3rem 0;
+      border: 1px solid rgba(255,255,255,0.6);
+      white-space: nowrap;
+    }
+
+    /* gallery carousel – touch friendly */
+    .carousel {
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+      border: 2px solid rgba(255,255,255,0.6);
+      margin: 1rem 0;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .slide {
+      min-width: 100%;
+      flex-shrink: 0;
+      position: relative;
+      padding-top: 56.25%; /* 16:9 */
+      background: #eef2f6;
+    }
+
+    .slide img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .controls {
       display: flex;
       justify-content: center;
-      align-items: center;
-      background: #1a1a1a;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
+      gap: 1rem;
+      margin: 1.2rem 0 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.9);
+      padding: 0.7rem 1.8rem;
+      border-radius: 3rem;
+      font-weight: 600;
+      color: #0b1e33;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+      min-width: 120px;
+    }
+
+    .btn:hover {
+      background: var(--primary);
       color: white;
+      border-color: var(--primary);
+      transform: scale(1.02);
     }
 
-    h1 {
-      position: absolute;
-      top: 20px;
+    /* SOLIDARITY GRID – always side by side, but stack on narrow phones */
+    .solidarity-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    @media (min-width: 480px) {
+      .solidarity-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .solidarity-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 2.2rem;
+      padding: 1.8rem 1rem 1.5rem;
       text-align: center;
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .solidarity-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 40px -16px rgba(0,0,0,0.25), 0 0 0 2px rgba(255,255,255,0.6);
+    }
+
+    .solidarity-card img {
       width: 100%;
-      font-size: 2rem;
+      max-width: 240px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 2rem;
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.25);
+      border: 3px solid white;
+      margin-bottom: 1.2rem;
+    }
+
+    .solidarity-card p {
+      margin: 0;
+      font-weight: 800;
+      font-size: 1.6rem;
       letter-spacing: 1px;
+      background: linear-gradient(145deg, #b91c1c, #7f1d1d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      word-break: break-word;
     }
 
-    .line-container {
-      position: relative;
-      width: 80%;
-      height: 20px;
-      background: #333;
-      overflow: hidden;
-      border-radius: 10px;
+    /* social links (compact on mobile) */
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 1.5rem;
     }
 
-    .line {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(90deg, #ff4c4c, #ffec4c, #4cff4c);
-      background-size: 300% 100%;
-      animation: animateLine 3s linear infinite;
+    .social a {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 0.6rem 1.2rem;
+      border-radius: 3rem;
+      font-weight: 500;
+      color: #0f172a;
+      text-decoration: none;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.95rem;
     }
 
-    @keyframes animateLine {
-      0% {
-        background-position: 0% 0%;
-      }
-      100% {
-        background-position: 100% 0%;
-      }
+    .social a:hover {
+      background: var(--primary);
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
+
+    /* footer */
+    footer {
+      background: rgba(16, 185, 129, 0.5);
+      border: 1px solid rgba(255,255,255,0.45);
+      padding: 1.2rem;
+      text-align: center;
+      border-radius: 3rem;
+      color: white;
+      font-weight: 500;
+      backdrop-filter: blur(12px);
+      margin-top: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* animations */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* very small devices (<=400px) */
+    @media (max-width: 400px) {
+      .intro h2 { font-size: 1.8rem; }
+      .card h3 { font-size: 1.6rem; }
+      .solidarity-card p { font-size: 1.4rem; }
+      .btn { padding: 0.6rem 1rem; min-width: 100px; }
+      .social a { padding: 0.5rem 1rem; font-size: 0.9rem; }
+    }
+
+    /* ensure no overflow */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* additional polish */
+    .intro .location-badge {
+      background: rgba(255,255,255,0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 3rem;
+      display: inline-block;
+      margin-top: 0.4rem;
+      backdrop-filter: blur(4px);
+      font-size: 0.95rem;
     }
   </style>
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <h1>Demo Website by JJ</h1>
+<header>
+  <h1>Jihad Junaed</h1>
+  <nav>
+    <a href="#education">Education</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <div class="line-container">
-    <div class="line"></div>
+<main class="container">
+  <!-- INTRO section (mobile optimized) -->
+  <section class="intro">
+    <img src="myphoto1.jpg" alt="Jihad Junaed portrait" />
+    <div>
+      <h2>Jihad Junaed</h2>
+      <p style="margin:0.3rem 0; font-size:1.2rem; font-weight:300;">✦ Student · Private Tutor · Dhaka ✦</p>
+      <span class="location-badge">📍 Mawa, Munshiganj</span>
+    </div>
+  </section>
+
+  <!-- ABOUT / tutoring -->
+  <section id="about" class="card">
+    <h3>About Me</h3>
+    <p style="font-size:1.1rem;">I’m JJ, a BBA student at Dhaka Central University (Dhaka College Campus). After completing HSC in 2024, I started tutoring while studying. I enjoy making learning simple and relatable — always with a cup of tea.</p>
+    
+    <div class="tutor-badge">
+      <span style="font-size:1.8rem; margin-right:6px;">🧑‍🏫</span>
+      <strong>Private home tutor — available in Mawa / Munshiganj</strong>
+      <div style="margin-top: 1rem;">
+        <span class="chip">Class 6-8 (all)</span>
+        <span class="chip">SSC English</span>
+        <span class="chip">Accounting</span>
+        <span class="chip">Finance</span>
+        <span class="chip">Business Entrepreneurship</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION + quick info (grid stacks on mobile) -->
+  <section id="education" class="card grid two" style="padding: 1.8rem;">
+    <div>
+      <h3 style="margin-top:0;">Education</h3>
+      <ul>
+        <li><strong>JSC 2019</strong> — Sreenagar Pilot School</li>
+        <li><strong>SSC 2022</strong> — Sreenagar Pilot School</li>
+        <li><strong>HSC 2024</strong> — Sreenagar Govt College</li>
+        <li><strong>BBA (Management)</strong> — Dhaka College (DCU)</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-top:0;">Quick Info</h3>
+      <p style="background: rgba(255,255,240,0.5); padding: 1.2rem; border-radius: 1.5rem;">📍 From Madaripur, based in Mawa. I teach class 6–10 with focus on English, Accounting, Finance & Entrepreneurship. Interactive & student-friendly.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY (carousel) -->
+  <section id="gallery" class="card">
+    <h3>My Photo Gallery</h3>
+    <div class="carousel">
+      <div class="slides" id="slides">
+        <div class="slide"><img src="photo1.jpg" alt="Jihad photo 1" loading="lazy"></div>
+        <div class="slide"><img src="photo2.jpg" alt="Jihad photo 2" loading="lazy"></div>
+        <div class="slide"><img src="photo3.jpg" alt="Jihad photo 3" loading="lazy"></div>
+        <div class="slide"><img src="photo4.jpg" alt="Jihad photo 4" loading="lazy"></div>
+        <div class="slide"><img src="photo5.jpg" alt="Jihad photo 5" loading="lazy"></div>
+        <div class="slide"><img src="photo6.jpg" alt="Jihad photo 6" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" id="prev">← Prev</button>
+      <button class="btn" id="next">Next →</button>
+    </div>
+  </section>
+
+  <!-- SOLIDARITY CARDS: side by side on tablet+ -->
+  <div class="solidarity-grid">
+    <div class="solidarity-card">
+      <img src="Palestine.png" alt="Free Palestine solidarity">
+      <p>#FreePalestine</p>
+    </div>
+    <div class="solidarity-card">
+      <img src="ইনকিলাব জিন্দাবাদ.jpg" alt="ইনকিলাব জিন্দাবাদ">
+      <p>#ইনকিলাব জিন্দাবাদ</p>
+    </div>
   </div>
 
-  <script>
-    // Optional JS for extra interactivity
-    const line = document.querySelector('.line-container');
+  <!-- CONTACT + CTA -->
+  <section id="contact" class="card" style="text-align:center;">
+    <h3 style="margin-top:0">Let's connect</h3>
+    <p><span>📧</span> <strong>jihadjunaed1234@gmail.com</strong></p>
+    <p><span>📱</span> <strong>+8801690294579</strong> (personal)</p>
+    <p><span>🏠</span> <strong>+8801923162125</strong> (home)</p>
+    
+    <p style="margin:1rem 0 0.2rem; background: rgba(16,185,129,0.2); padding:0.6rem; border-radius:3rem;">
+      📘 <strong>Available for home tuition</strong> — Mawa / Munshiganj
+    </p>
 
-    line.addEventListener('click', () => {
-      alert('You clicked the animated line!');
+    <div class="social">
+      <a href="https://www.facebook.com/share/1DpkVHebDk/" target="_blank"><span>📘</span> Facebook</a>
+      <a href="https://youtube.com/@mrtabbycatt?si=8CBYBQXcvtpYNvsS" target="_blank"><span>▶️</span> YouTube</a>
+      <a href="https://www.instagram.com/jihad_junaed?igsh=MWExNDU0M3BvazFnZw==" target="_blank"><span>📸</span> Instagram</a>
+    </div>
+    <p style="margin-top:1rem; opacity:0.8;">✉️ tuition enquiries / study tips — just DM</p>
+  </section>
+</main>
+
+<footer>
+  <div>© 2025 Jihad Junaed — private tutor & learner. All rights reserved.</div>
+</footer>
+
+<!-- Carousel script (works on all devices) -->
+<script>
+  (function() {
+    const slides = document.getElementById('slides');
+    if (!slides) return;
+    const slideCount = slides.children.length;
+    let currentIndex = 0;
+
+    function updateSlide() {
+      slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+    }
+
+    const nextBtn = document.getElementById('next');
+    const prevBtn = document.getElementById('prev');
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slideCount;
+        updateSlide();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+        updateSlide();
+      });
+    }
+
+    // optional: touch swipe (minimal)
+    let touchStartX = 0;
+    slides.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    slides.addEventListener('touchend', (e) => {
+      if (touchStartX === null) return;
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+        } else {
+          currentIndex = (currentIndex + 1) % slideCount;
+        }
+        updateSlide();
+      }
+      touchStartX = 0;
     });
-  </script>
+  })();
+</script>
+
+<!-- note: placeholder images – replace with actual files. design fully responsive -->
 </body>
 </html>
