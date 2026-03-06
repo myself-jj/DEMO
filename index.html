@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-  <title>Jihad Junaed · tutor & creator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jihad Junaed · professional profile</title>
   <style>
-    /* ----- RESET & MODERN VARIABLES (mobile-first) ----- */
+    /* ----- RESET & PROFESSIONAL VARIABLES ----- */
     * {
       margin: 0;
       padding: 0;
@@ -13,279 +13,217 @@
     }
 
     :root {
-      --primary: #2563eb;
-      --primary-soft: #3b82f6;
-      --secondary: #10b981;
-      --accent: #f59e0b;
-      --bg-dark: #0f172a;
-      --bg-light: #f8fafc;
-      --glass-bg: rgba(255, 255, 255, 0.25);
-      --glass-border: rgba(255, 255, 255, 0.3);
-      --glass-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
-      --card-bg: rgba(255, 255, 255, 0.7);
-      --text-primary: #0b1e33;
-      --text-muted: #334155;
-      --glow: 0 0 12px rgba(37, 99, 235, 0.4);
-      --transition: all 0.3s ease;
+      --background: #f5f3f0;
+      --surface: #ffffff;
+      --primary-text: #1e1b1a;
+      --secondary-text: #4a4642;
+      --accent: #7c6a5a;
+      --border-pale: #e2dbd3;
+      --subtle-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.08);
+      --hover-shadow: 0 16px 28px -10px rgba(0, 0, 0, 0.12);
+      --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --transition: all 0.2s ease-in-out;
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(145deg, #e2e8f0 0%, #f1f5f9 100%);
+      font-family: var(--font-sans);
+      background: var(--background);
+      color: var(--primary-text);
+      line-height: 1.7;
+      padding: 1.2rem;
       min-height: 100vh;
-      color: var(--text-primary);
-      line-height: 1.5;
-      padding: 0.5rem;
+      font-weight: 350;
+      font-size: 1rem;
     }
 
-    /* background blobs (fixed, subtle) */
+    /* faint linen texture */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 40%),
-                  radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+      background-image: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><path d="M1 3h1v1H1V3zm3-3h1v1H4V0z" fill="%23998d82" fill-opacity="0.03"/></svg>');
       pointer-events: none;
       z-index: 0;
     }
 
     .container {
-      max-width: 1100px;
-      margin: 1rem auto;
-      padding: 0 1rem;
+      max-width: 1024px;
+      margin: 2rem auto;
+      padding: 0 1.2rem;
       position: relative;
       z-index: 5;
     }
 
-    /* ----- GLASS CARD (base) – refined for mobile ----- */
-    .glass-card, header, section.card, .intro, footer {
-      backdrop-filter: blur(12px) saturate(160%);
-      -webkit-backdrop-filter: blur(12px) saturate(160%);
-      background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      box-shadow: var(--glass-shadow), 0 8px 20px -8px rgba(0,20,40,0.15);
-      border-radius: 2rem;
+    /* cards: clean, subtle, professional */
+    .card, header, .intro-card, section, footer {
+      background: var(--surface);
+      border: 1px solid var(--border-pale);
+      border-radius: 28px;
+      box-shadow: var(--subtle-shadow);
       transition: var(--transition);
     }
 
-    /* ----- HEADER (stack friendly) ----- */
+    .card:hover, section:hover {
+      box-shadow: var(--hover-shadow);
+      border-color: #cdc0b4;
+    }
+
+    /* ----- HEADER (elegant & minimal) ----- */
     header {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.2rem;
-      background: rgba(37, 99, 235, 0.6);
-      border: 1px solid rgba(255,255,255,0.4);
-      box-shadow: 0 10px 30px -10px rgba(0,80,200,0.4);
-      margin-bottom: 1.5rem;
-      backdrop-filter: blur(15px);
-      color: white;
-      text-align: center;
+      padding: 1.2rem 2.2rem;
+      margin-bottom: 2.8rem;
+      background: var(--surface);
     }
 
     header h1 {
-      font-weight: 600;
-      font-size: 1.8rem;
-      letter-spacing: -0.02em;
-      background: linear-gradient(to right, #fff, #f0f9ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      color: #2e2925;
+      border-left: 3px solid var(--accent);
+      padding-left: 1.2rem;
     }
 
     nav {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.8rem 1.5rem;
+      gap: 2rem;
     }
 
     nav a {
-      color: white;
+      color: var(--secondary-text);
       text-decoration: none;
-      font-weight: 500;
-      position: relative;
-      padding-bottom: 4px;
       font-size: 1rem;
+      font-weight: 430;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      padding-bottom: 3px;
     }
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: var(--accent);
-      transition: 0.3s;
-      border-radius: 2px;
+    nav a:hover {
+      color: #1e1b1a;
+      border-bottom-color: var(--accent);
     }
 
-    nav a:hover::after,
-    nav a:focus::after {
-      width: 100%;
-    }
-
-    /* ----- INTRO (column on mobile, row on larger) ----- */
-    .intro {
+    /* ----- intro card (polished) ----- */
+    .intro-card {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      gap: 1.5rem;
-      padding: 2rem 1.5rem;
-      margin: 1.5rem 0;
-      background: rgba(255,255,255,0.5);
-      border: 2px solid transparent;
-      background-clip: padding-box;
-      position: relative;
+      gap: 2.5rem;
+      padding: 2.4rem 2.8rem;
+      margin: 2.2rem 0 2.5rem;
+      background: var(--surface);
     }
 
-    @media (min-width: 600px) {
-      .intro {
-        flex-direction: row;
-        text-align: left;
-        padding: 2.5rem;
-      }
-    }
-
-    .intro::before {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      z-index: -1;
-      background: linear-gradient(60deg, var(--primary), var(--secondary), var(--accent), var(--primary));
-      background-size: 300% 300%;
-      border-radius: 2.2rem;
-      animation: gradientShift 8s ease infinite;
-      opacity: 0.5;
-    }
-
-    .intro img {
-      width: 130px;
-      height: 130px;
+    .intro-card img {
+      width: 150px;
+      height: 150px;
       object-fit: cover;
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      border: 4px solid white;
-      box-shadow: 0 20px 30px -8px rgba(0,0,0,0.25);
-      transition: transform 0.4s ease, border-radius 0.4s;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 10px 22px -6px rgba(0,0,0,0.12);
+      filter: grayscale(12%);
     }
 
-    .intro img:hover {
-      transform: scale(1.05) rotate(2deg);
-      border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
-    }
-
-    .intro h2 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      background: linear-gradient(130deg, #1e3c72, #2a5298);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .intro-text h2 {
+      font-family: var(--font-serif);
+      font-size: 2.7rem;
+      font-weight: 500;
+      color: #2c2621;
       line-height: 1.2;
+      margin-bottom: 0.2rem;
     }
 
-    .intro p {
-      max-width: 500px;
+    .subhead {
+      font-size: 1.25rem;
+      font-weight: 340;
+      color: var(--secondary-text);
+      margin-bottom: 0.5rem;
     }
 
-    /* ----- CARDS (mobile padding refined) ----- */
-    section.card {
-      background: rgba(255, 255, 255, 0.6);
-      padding: 1.8rem 1.5rem;
-      border-radius: 2.2rem;
-      margin: 1.8rem 0;
-    }
-
-    .card h3 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 1.2rem;
+    .badge {
       display: inline-block;
-      background: linear-gradient(145deg, #1e293b, #0f172a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      border-left: 6px solid var(--primary);
-      padding-left: 1rem;
-      word-break: break-word;
+      background: #f0eae4;
+      padding: 0.2rem 1.2rem 0.2rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      color: #4e4842;
+      border: 1px solid #dbd0c6;
     }
 
-    /* grid for education – mobile first 1 col */
-    .grid.two {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.8rem;
+    /* ----- headings (professional, understated) ----- */
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 500;
+      color: #302b26;
+      margin-bottom: 1.4rem;
+      border-bottom: 1px solid var(--border-pale);
+      padding-bottom: 0.5rem;
+      letter-spacing: -0.01em;
     }
 
-    @media (min-width: 640px) {
-      .grid.two {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-      }
-    }
-
-    ul {
+    /* lists (refined) */
+    ul.classic {
       list-style: none;
       padding-left: 0;
     }
-    ul li {
-      margin-bottom: 0.9rem;
+
+    ul.classic li {
+      margin-bottom: 1rem;
       padding-left: 1.8rem;
       position: relative;
-      word-break: break-word;
+      color: #3d3833;
     }
-    ul li::before {
-      content: "✨";
+
+    ul.classic li::before {
+      content: "—";
+      font-size: 1.2rem;
       position: absolute;
       left: 0;
+      top: -0.25rem;
       color: var(--accent);
-      font-size: 1.1rem;
     }
 
-    /* tutor badge & chips */
-    .tutor-badge {
-      background: linear-gradient(115deg, rgba(16,185,129,0.15), rgba(245,158,11,0.15));
-      border-radius: 2rem;
-      padding: 1.2rem 1.2rem;
-      margin: 1.5rem 0 0.5rem;
-      border: 1px dashed var(--secondary);
+    /* two column grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.2rem;
     }
 
-    .chip {
-      display: inline-block;
-      background: rgba(37,99,235,0.15);
-      backdrop-filter: blur(4px);
-      padding: 0.3rem 1rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin: 0.3rem 0.4rem 0.3rem 0;
-      border: 1px solid rgba(255,255,255,0.6);
-      white-space: nowrap;
+    .info-block {
+      background: #f9f6f2;
+      padding: 1.8rem;
+      border-radius: 22px;
+      border: 1px solid #e7dfd7;
     }
 
-    /* gallery carousel – touch friendly */
-    .carousel {
-      border-radius: 2rem;
+    /* gallery carousel */
+    .carousel-frame {
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
-      border: 2px solid rgba(255,255,255,0.6);
-      margin: 1rem 0;
+      border: 1px solid var(--border-pale);
+      background: #eeebe7;
+      margin-bottom: 1.2rem;
     }
 
     .slides {
       display: flex;
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+      transition: transform 0.4s ease;
     }
 
     .slide {
       min-width: 100%;
       flex-shrink: 0;
       position: relative;
-      padding-top: 56.25%; /* 16:9 */
-      background: #eef2f6;
+      padding-top: 58%; /* 16:9 softer */
+      background: #dad2c8;
     }
 
     .slide img {
@@ -297,176 +235,175 @@
       object-fit: cover;
     }
 
-    .controls {
+    .carousel-actions {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      margin: 1.2rem 0 0.5rem;
-      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 1.2rem 0 0.2rem;
     }
 
-    .btn {
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.9);
-      padding: 0.7rem 1.8rem;
-      border-radius: 3rem;
-      font-weight: 600;
-      color: #0b1e33;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    .carousel-btn {
+      background: transparent;
+      border: 1px solid var(--border-pale);
+      background-color: white;
+      padding: 0.5rem 2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 440;
+      color: var(--primary-text);
       cursor: pointer;
-      transition: 0.2s;
-      font-size: 1rem;
-      min-width: 120px;
+      transition: background 0.15s, border-color 0.15s;
     }
 
-    .btn:hover {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-      transform: scale(1.02);
+    .carousel-btn:hover {
+      background: #f3eee9;
+      border-color: var(--accent);
     }
 
-    /* SOLIDARITY GRID – always side by side, but stack on narrow phones */
-    .solidarity-grid {
+    /* solidarity cards — two per row, typographic */
+    .solidarity-row {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    @media (min-width: 480px) {
-      .solidarity-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      grid-template-columns: 1fr 1fr;
+      gap: 2.2rem;
+      margin: 2.8rem 0;
     }
 
     .solidarity-card {
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(12px) saturate(180%);
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 2.2rem;
-      padding: 1.8rem 1rem 1.5rem;
+      background: #fcfaf8;
+      border: 1px solid #e4dbd1;
+      border-radius: 32px;
+      padding: 2rem 1.2rem 1.8rem;
       text-align: center;
-      box-shadow: var(--glass-shadow);
       transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     .solidarity-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 30px 40px -16px rgba(0,0,0,0.25), 0 0 0 2px rgba(255,255,255,0.6);
+      background: white;
+      border-color: #bfb1a3;
+      box-shadow: var(--subtle-shadow);
     }
 
     .solidarity-card img {
       width: 100%;
-      max-width: 240px;
+      max-width: 260px;
       height: auto;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 1/1;
       object-fit: cover;
-      border-radius: 2rem;
-      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
       border: 3px solid white;
-      margin-bottom: 1.2rem;
+      box-shadow: 0 10px 18px -8px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
     }
 
     .solidarity-card p {
-      margin: 0;
-      font-weight: 800;
-      font-size: 1.6rem;
-      letter-spacing: 1px;
-      background: linear-gradient(145deg, #b91c1c, #7f1d1d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      word-break: break-word;
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 500;
+      color: #3b332c;
+      margin: 0.3rem 0 0;
+      line-height: 1.3;
     }
 
-    /* social links (compact on mobile) */
-    .social {
+    /* contact card — professional clean */
+    .contact-card {
+      text-align: center;
+      padding: 2.2rem 1.5rem 2.2rem;
+    }
+
+    .contact-methods {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
+      align-items: center;
       justify-content: center;
-      margin-top: 1.5rem;
+      gap: 1.2rem 2rem;
+      margin: 1.6rem 0 1.8rem;
     }
 
-    .social a {
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.7);
-      padding: 0.6rem 1.2rem;
-      border-radius: 3rem;
-      font-weight: 500;
-      color: #0f172a;
+    .contact-methods span {
+      background: #f5f0ea;
+      padding: 0.4rem 1.6rem;
+      border-radius: 60px;
+      border: 1px solid #ddd1c6;
+      font-size: 1rem;
+    }
+
+    .social-profiles {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem 1.8rem;
+      margin-top: 2rem;
+    }
+
+    .social-profiles a {
       text-decoration: none;
-      transition: 0.2s;
+      color: var(--primary-text);
+      border: 1px solid var(--border-pale);
+      padding: 0.6rem 2rem;
+      border-radius: 60px;
+      background: white;
+      font-weight: 430;
+      transition: 0.15s;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.95rem;
     }
 
-    .social a:hover {
-      background: var(--primary);
-      color: white;
-      border-color: transparent;
-      transform: translateY(-3px);
+    .social-profiles a:hover {
+      background: #f2ebe4;
+      border-color: var(--accent);
     }
 
     /* footer */
     footer {
-      background: rgba(16, 185, 129, 0.5);
-      border: 1px solid rgba(255,255,255,0.45);
-      padding: 1.2rem;
+      background: #ffffff;
+      padding: 1.6rem;
       text-align: center;
-      border-radius: 3rem;
-      color: white;
-      font-weight: 500;
-      backdrop-filter: blur(12px);
-      margin-top: 2.5rem;
+      border-radius: 36px;
+      color: #59534c;
       font-size: 0.95rem;
+      margin-top: 3.2rem;
+      border: 1px solid var(--border-pale);
     }
 
-    /* animations */
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* very small devices (<=400px) */
-    @media (max-width: 400px) {
-      .intro h2 { font-size: 1.8rem; }
-      .card h3 { font-size: 1.6rem; }
-      .solidarity-card p { font-size: 1.4rem; }
-      .btn { padding: 0.6rem 1rem; min-width: 100px; }
-      .social a { padding: 0.5rem 1rem; font-size: 0.9rem; }
-    }
-
-    /* ensure no overflow */
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    /* additional polish */
-    .intro .location-badge {
-      background: rgba(255,255,255,0.3);
-      padding: 0.4rem 1rem;
-      border-radius: 3rem;
-      display: inline-block;
-      margin-top: 0.4rem;
-      backdrop-filter: blur(4px);
-      font-size: 0.95rem;
+    /* mobile fine-tuning */
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.2rem 1.5rem;
+      }
+      nav {
+        gap: 1.5rem;
+      }
+      .intro-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.8rem 1.5rem;
+      }
+      .intro-text h2 {
+        font-size: 2.3rem;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+      .solidarity-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .contact-methods {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
     }
   </style>
-  <!-- Inter font -->
+  <!-- refined serif + sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,450;14..32,500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -480,74 +417,74 @@
 </header>
 
 <main class="container">
-  <!-- INTRO section (mobile optimized) -->
-  <section class="intro">
-    <img src="myphoto1.jpg" alt="Jihad Junaed portrait" />
-    <div>
+
+  <!-- intro card — punctuation & tone professionalised -->
+  <div class="intro-card">
+    <img src="myphoto1.jpg" alt="Portrait of Jihad Junaed" />
+    <div class="intro-text">
       <h2>Jihad Junaed</h2>
-      <p style="margin:0.3rem 0; font-size:1.2rem; font-weight:300;">✦ Student · Private Tutor · Dhaka ✦</p>
-      <span class="location-badge">📍 Mawa, Munshiganj</span>
+      <div class="subhead">BBA student · based in Mawa, Munshiganj</div>
+      <span class="badge">📍 originally from Madaripur</span>
+      <p style="margin-top: 1rem; max-width: 480px; color: #4b443e;">"Attentive, curious, and quietly dedicated — I value simplicity and depth, both in studies and daily life."</p>
+    </div>
+  </div>
+
+  <!-- about section — professional, no tutoring, proper punctuation -->
+  <section id="about" class="card" style="padding: 2.2rem 2.5rem;">
+    <h3>About</h3>
+    <p style="font-size: 1.2rem; color: #36312c; max-width: 800px;">I am currently pursuing a BBA in Management at Dhaka Central University (Dhaka College campus). After completing my HSC in 2024, I chose to focus on my studies, personal projects, and the quiet rhythms of riverine life in Mawa. I read, I write, and I observe — slowly building a path that feels my own.</p>
+    <div style="margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 0.8rem;">
+      <span style="background: #ede7e0; padding: 0.3rem 1.4rem; border-radius: 40px; font-size: 0.9rem;">business · management</span>
+      <span style="background: #ede7e0; padding: 0.3rem 1.4rem; border-radius: 40px; font-size: 0.9rem;">photography · stories</span>
+      <span style="background: #ede7e0; padding: 0.3rem 1.4rem; border-radius: 40px; font-size: 0.9rem;">Dhaka · Munshiganj</span>
     </div>
   </section>
 
-  <!-- ABOUT / tutoring -->
-  <section id="about" class="card">
-    <h3>About Me</h3>
-    <p style="font-size:1.1rem;">I’m JJ, a BBA student at Dhaka Central University (Dhaka College Campus). After completing HSC in 2024, I started tutoring while studying. I enjoy making learning simple and relatable — always with a cup of tea.</p>
-    
-    <div class="tutor-badge">
-      <span style="font-size:1.8rem; margin-right:6px;">🧑‍🏫</span>
-      <strong>Private home tutor — available in Mawa / Munshiganj</strong>
-      <div style="margin-top: 1rem;">
-        <span class="chip">Class 6-8 (all)</span>
-        <span class="chip">SSC English</span>
-        <span class="chip">Accounting</span>
-        <span class="chip">Finance</span>
-        <span class="chip">Business Entrepreneurship</span>
+  <!-- education + informal background — polished punctuation -->
+  <section id="education" class="card" style="padding: 2.2rem;">
+    <div class="grid-2">
+      <div>
+        <h3 style="margin-top: 0;">Education</h3>
+        <ul class="classic">
+          <li><strong>Junior School Certificate (JSC), 2019</strong> — Sreenagar Pilot School and College.</li>
+          <li><strong>Secondary School Certificate (SSC), 2022</strong> — Sreenagar Pilot School and College.</li>
+          <li><strong>Higher Secondary Certificate (HSC), 2024</strong> — Sreenagar Government College.</li>
+          <li><strong>BBA in Management</strong> — Dhaka Central University (Dhaka College campus), present.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-top: 0;">Informal</h3>
+        <div class="info-block">
+          <p>🌱 I maintain a personal journal about everyday life in Mawa — the ferry ghat, changing light, and conversations. I also document with a modest camera and believe in learning through quiet observation.</p>
+          <p style="margin-top: 1.2rem;">📍 Mawa, Munshiganj — close to the Padma.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION + quick info (grid stacks on mobile) -->
-  <section id="education" class="card grid two" style="padding: 1.8rem;">
-    <div>
-      <h3 style="margin-top:0;">Education</h3>
-      <ul>
-        <li><strong>JSC 2019</strong> — Sreenagar Pilot School</li>
-        <li><strong>SSC 2022</strong> — Sreenagar Pilot School</li>
-        <li><strong>HSC 2024</strong> — Sreenagar Govt College</li>
-        <li><strong>BBA (Management)</strong> — Dhaka College (DCU)</li>
-      </ul>
-    </div>
-    <div>
-      <h3 style="margin-top:0;">Quick Info</h3>
-      <p style="background: rgba(255,255,240,0.5); padding: 1.2rem; border-radius: 1.5rem;">📍 From Madaripur, based in Mawa. I teach class 6–10 with focus on English, Accounting, Finance & Entrepreneurship. Interactive & student-friendly.</p>
-    </div>
-  </section>
-
-  <!-- GALLERY (carousel) -->
-  <section id="gallery" class="card">
-    <h3>My Photo Gallery</h3>
-    <div class="carousel">
+  <!-- GALLERY section — same clean structure -->
+  <section id="gallery" class="card" style="padding: 2rem 2rem 2.4rem;">
+    <h3>Moments</h3>
+    <div class="carousel-frame">
       <div class="slides" id="slides">
-        <div class="slide"><img src="photo1.jpg" alt="Jihad photo 1" loading="lazy"></div>
-        <div class="slide"><img src="photo2.jpg" alt="Jihad photo 2" loading="lazy"></div>
-        <div class="slide"><img src="photo3.jpg" alt="Jihad photo 3" loading="lazy"></div>
-        <div class="slide"><img src="photo4.jpg" alt="Jihad photo 4" loading="lazy"></div>
-        <div class="slide"><img src="photo5.jpg" alt="Jihad photo 5" loading="lazy"></div>
-        <div class="slide"><img src="photo6.jpg" alt="Jihad photo 6" loading="lazy"></div>
+        <div class="slide"><img src="photo1.jpg" alt="Jihad's photo 1"></div>
+        <div class="slide"><img src="photo2.jpg" alt="Jihad's photo 2"></div>
+        <div class="slide"><img src="photo3.jpg" alt="Jihad's photo 3"></div>
+        <div class="slide"><img src="photo4.jpg" alt="Jihad's photo 4"></div>
+        <div class="slide"><img src="photo5.jpg" alt="Jihad's photo 5"></div>
+        <div class="slide"><img src="photo6.jpg" alt="Jihad's photo 6"></div>
       </div>
     </div>
-    <div class="controls">
-      <button class="btn" id="prev">← Prev</button>
-      <button class="btn" id="next">Next →</button>
+    <div class="carousel-actions">
+      <button class="carousel-btn" id="prevBtn">← previous</button>
+      <button class="carousel-btn" id="nextBtn">next →</button>
     </div>
   </section>
 
-  <!-- SOLIDARITY CARDS: side by side on tablet+ -->
-  <div class="solidarity-grid">
+  <!-- solidarity cards — punctuation intact, refined -->
+  <div class="solidarity-row">
     <div class="solidarity-card">
-      <img src="Palestine.png" alt="Free Palestine solidarity">
+      <img src="Palestine.png" alt="Solidarity with Palestine">
       <p>#FreePalestine</p>
     </div>
     <div class="solidarity-card">
@@ -556,81 +493,57 @@
     </div>
   </div>
 
-  <!-- CONTACT + CTA -->
-  <section id="contact" class="card" style="text-align:center;">
-    <h3 style="margin-top:0">Let's connect</h3>
-    <p><span>📧</span> <strong>jihadjunaed1234@gmail.com</strong></p>
-    <p><span>📱</span> <strong>+8801690294579</strong> (personal)</p>
-    <p><span>🏠</span> <strong>+8801923162125</strong> (home)</p>
-    
-    <p style="margin:1rem 0 0.2rem; background: rgba(16,185,129,0.2); padding:0.6rem; border-radius:3rem;">
-      📘 <strong>Available for home tuition</strong> — Mawa / Munshiganj
-    </p>
-
-    <div class="social">
-      <a href="https://www.facebook.com/share/1DpkVHebDk/" target="_blank"><span>📘</span> Facebook</a>
-      <a href="https://youtube.com/@mrtabbycatt?si=8CBYBQXcvtpYNvsS" target="_blank"><span>▶️</span> YouTube</a>
-      <a href="https://www.instagram.com/jihad_junaed?igsh=MWExNDU0M3BvazFnZw==" target="_blank"><span>📸</span> Instagram</a>
+  <!-- CONTACT — purely personal, professional tone -->
+  <section id="contact" class="card contact-card">
+    <h3 style="border-bottom: none;">Connect</h3>
+    <div class="contact-methods">
+      <span>📧 jihadjunaed1234@gmail.com</span>
+      <span>📱 +8801690294579</span>
+      <span>🏠 +8801923162125</span>
     </div>
-    <p style="margin-top:1rem; opacity:0.8;">✉️ tuition enquiries / study tips — just DM</p>
+
+    <div class="social-profiles">
+      <a href="https://www.facebook.com/share/1DpkVHebDk/" target="_blank">📘 Facebook</a>
+      <a href="https://youtube.com/@mrtabbycatt?si=8CBYBQXcvtpYNvsS" target="_blank">▶️ YouTube</a>
+      <a href="https://www.instagram.com/jihad_junaed?igsh=MWExNDU0M3BvazFnZw==" target="_blank">📸 Instagram</a>
+    </div>
+    <p style="margin-top: 1.8rem; color: #625a52; font-size: 0.95rem;">Messages are always welcome — academic or casual.</p>
   </section>
 </main>
 
 <footer>
-  <div>© 2025 Jihad Junaed — private tutor & learner. All rights reserved.</div>
+  <div>© 2025 Jihad Junaed · all content subject to personal rights</div>
 </footer>
 
-<!-- Carousel script (works on all devices) -->
+<!-- carousel script (minimal) -->
 <script>
   (function() {
     const slides = document.getElementById('slides');
     if (!slides) return;
-    const slideCount = slides.children.length;
-    let currentIndex = 0;
+    const total = slides.children.length;
+    let index = 0;
 
-    function updateSlide() {
-      slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
+
+    function moveSlides() {
+      slides.style.transform = `translateX(-${index * 100}%)`;
     }
 
-    const nextBtn = document.getElementById('next');
-    const prevBtn = document.getElementById('prev');
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % slideCount;
-        updateSlide();
+    if (next) {
+      next.addEventListener('click', () => {
+        index = (index + 1) % total;
+        moveSlides();
       });
     }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-        updateSlide();
+    if (prev) {
+      prev.addEventListener('click', () => {
+        index = (index - 1 + total) % total;
+        moveSlides();
       });
     }
-
-    // optional: touch swipe (minimal)
-    let touchStartX = 0;
-    slides.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
-
-    slides.addEventListener('touchend', (e) => {
-      if (touchStartX === null) return;
-      const diff = e.changedTouches[0].screenX - touchStartX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-        } else {
-          currentIndex = (currentIndex + 1) % slideCount;
-        }
-        updateSlide();
-      }
-      touchStartX = 0;
-    });
   })();
 </script>
 
-<!-- note: placeholder images – replace with actual files. design fully responsive -->
 </body>
 </html>
